@@ -1,0 +1,25 @@
+In this problem we are to find the binary representation of the given number and then the largest gap between two ' 1 ' occuring in the
+binary representation. So , we will tackle this problem with usage of bitwise operations . So we go like at first.
+
+int binaryGap(int N) {
+        
+        int maxGap = 0;         //record the maxGap till occured 
+        int i = 1;            // i variable is for traversal 
+        int last = -1;             // This variable is for keeping record of last ' 1 ' we encountered
+        
+        while(N > 0)              // looping until N degrades to zero
+        {
+            int bit = N%2;             // N%2  to find whether at current state it is ' 0 ' or ' 1 ' we are encountering in binary represenation
+            if(bit == 1)                 // if at current position it is ' 1 ' in binary representaion
+            {
+                if(last >= 0)                 // and we have last index greater than zero 
+                    maxGap = max(maxGap, i - last);  // upadating the maxGap which is just current pointer walking - last ' 1 ' encountered
+                last = i;                             // now we update the last element as we have got ' 1 ' bit
+            }
+            
+            i++;                                   // this is loop increment factor we might have written that at one place in for loop
+            N /= 2;
+        }
+        
+        return maxGap;
+    }
