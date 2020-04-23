@@ -1,0 +1,33 @@
+So, Here in this problem we will use  the stack data structure to solve this because we just wanna put in and take out in the same order 
+so, using stack we will go on storing the { [ (  bracket types in the stack as we encounter and also if at the top comes ( and corresponding if
+we encounter ) then we pop out the ( so both are out similarly for all .
+
+class Solution {
+public:
+    bool isValid(string s) {
+        if(s.size()==0)
+            return true;
+        
+        stack<char> st;
+        for(int i=0;i<s.size();i++)
+        {
+            if(s[i]=='{' || s[i]=='(' || s[i]=='[')
+                st.push(s[i]);
+            else
+            {
+                if(st.size()==0)
+                    return false;
+               else if((s[i]==')' && st.top()=='(') || (s[i]==']' && st.top()=='[') || (s[i]=='}' && st.top()=='{'))
+                   st.pop();
+                else
+                    return false;
+                    
+            }
+        }
+        if(st.size()==0)
+         return true;
+        else
+            return false;
+        
+    }
+};
