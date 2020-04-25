@@ -1,0 +1,9 @@
+In this problem we have to remove similar elements and return the lenth of newly formed array or vector so , we can just go like starting 
+from first element we go on replacing with consecutive elements if they are same otherwise no change 
+
+class Solution {
+public:
+     int removeElement(vector<int>& nums, int val) {
+        int j=0; for (int i=0; i < nums.size(); i++) { if (nums[i] != val) nums[j++] = nums[i];}; return j;
+    }
+};
