@@ -1,0 +1,23 @@
+Problem is self explanatory what to do 
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if(needle.size()>haystack.size()) return -1;
+        if(needle.size()==0) return 0;
+        int start=0,end=needle.size()-1;
+        while(end<haystack.size()){
+            string s;
+            for(int i=start;i<=end;i++){
+                s+=haystack[i];
+            }
+            if(s==needle) return start;
+            start++;
+            end++;
+        }
+        return -1;
+    }
+};
+
+and so is the solution. we created a new string on each a substring while we go on proceeding and matching with the solution.
+
+https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
