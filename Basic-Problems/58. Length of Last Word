@@ -1,0 +1,15 @@
+Here, In this problem we can travel from the last char.
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int n=s.length();
+        int last=n-1, len=0;
+        while(last>=0 && s[last]==' ') last--;
+        while(last>=0 && s[last]!=' '){
+            len++;
+            last--;
+        }
+        return len;
+    }
+};
