@@ -1,0 +1,20 @@
+Here, In this problem we have to add the given two binary numbers and we can do so by converting each digit once to binary or simply that is
+0 and 1 in deciman and then we just do below thing
+
+
+class Solution {
+public:
+    string addBinary(string a, string b) {
+        int n=a.length(), m=b.length();
+        int i=n-1, j=m-1, carry=0;
+        string str="";
+        while(i>=0 || j>=0 || carry){
+            int sum = ((i>=0)?(a[i]-'0'):0) + ((j>=0)?(b[j]-'0'):0) + carry;
+            carry = sum/2;
+            str = char((sum%2)+'0')+str;
+            if(i>=0) i--;
+            if(j>=0) j--;
+        }
+        return str;
+    }
+};
