@@ -1,0 +1,52 @@
+Here, In this problem we are to find the order of numbers from 1 to n  for given n . in lexicographical .
+
+One very good way is to convert given number to string and then sort it and then again convert them to integers vector as
+
+class Solution {
+public:
+    vector<int> lexicalOrder(int n) {
+        
+ 
+    std::vector<int> numbers(n >= 1 ? n : 2 - n);
+        
+    std::iota(numbers.begin(), numbers.end(), std::min(1, n));
+    
+    std::vector<std::string> strings(numbers.size());
+        
+    std::transform(numbers.begin(), numbers.end(), strings.begin(),
+                   [](int i) { return std::to_string(i); });
+        
+    std::sort(strings.begin(), strings.end());
+        
+    std::transform(strings.begin(), strings.end(), numbers.begin(),
+                   [](const std::string& s) { return std::stoi(s); });
+        
+    return numbers;
+   
+    }
+};
+
+or the other way we can start from 1 and then all numbers like 11 12 13  comparing and then 2 21 22 23  and so for each 
+1 to 9 and just pushing them in until they are less than given n;
+class Solution {
+    int next(int last, int n)
+    {
+        if (last * 10 <= n)
+            return last * 10;
+        if (last == n)
+            last /= 10;
+        ++last;
+        while(last % 10 == 0)
+            last /= 10;
+        return last;
+    }
+public:
+    vector<int> lexicalOrder(int n) {
+        if (n < 1) return vector<int>();
+        vector<int> result(n);
+        result[0] = 1;
+        for (int i = 1; i < n; ++ i)
+            result[i] = next(result[i - 1], n);
+        return result;
+    }
+};
