@@ -1,0 +1,22 @@
+So , we can do this usage of map too but we will see another method which is more efficient than map.In this case here.
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        ios_base::sync_with_stdio(false);
+        cin.tie(NULL);
+      
+        // Using hashtable, We know that max size of the tbale can be 26 as characters are there
+        int arr[26] = {0};
+        // Note: above means '= {0}' will initialize all garbage with 0, which is 
+        // ***IMPORTANT***
+        int i = 0;
+        for (; i < s.size(); i++) {
+            arr[s[i] - 'a']++;
+        }
+        
+        for (i = 0; i < s.size(); i++) {
+            if (arr[s[i] - 'a'] == 1) return i;
+        }
+        return -1;
+        }};
