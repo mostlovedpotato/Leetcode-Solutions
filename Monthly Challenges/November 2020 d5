@@ -1,0 +1,26 @@
+The question is 
+Minimum Cost to Move Chips to The Same Position
+
+Here in this question either you can go and apply two loops using maps to count minimum each time between sums 
+which are for between one pos to other position but simple and elegent solution is 
+
+we just calculate the number of odd and even numbers and then return the min of two 
+as we will just need that many cost coins other positions can be achieved using 2 steps which cost 0 each time.
+
+
+class Solution {
+public:
+    int minCostToMoveChips(vector<int>& position) {
+        int even = 0;
+        int odd =0;
+        for(int i=0;i<position.size();i++){
+            if(position[i]%2==0){
+                even++;
+            }
+            else{
+                odd++;
+            }
+        }
+        return min(odd,even);
+    }
+};
