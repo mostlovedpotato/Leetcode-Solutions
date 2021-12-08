@@ -1,0 +1,41 @@
+
+
+We find the first pair which will give us the pair a[i-1] > a[i] 
+then we go and checking the smallest greater element than a[i-1] from the 
+right of the array. 
+
+so, we check from i-1 to all right elements for the rightmost greater element to a[i-1]
+
+then we swap those elements and then we sort all the elements to the right of i-1.
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int n = nums.size();
+        
+        // we first find the a[i-1], a[i] pair satisfying 
+        bool ifdes = false;
+        for(int i=n-1;i>0;i--){
+            if(nums[i]>nums[i-1]){
+                // if such pair exist then we will 
+                // find the element greater than a[i-1] most right to i-1
+                for(int j=n-1;j>i-1;j--){
+                    if(nums[j] > nums[i-1]){
+                        int temp = nums[i-1];
+                        nums[i-1] = nums[j];
+                        nums[j] = temp;
+                        break;
+                    }
+                }
+                auto it = nums.begin()+i;
+                sort(it,nums.end());
+                ifdes = true;
+                cout << ifdes << endl;
+                break;
+            }
+        }
+        if(ifdes == false){
+            sort(nums.begin(),nums.end());
+        }
+    }
+};
